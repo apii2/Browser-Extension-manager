@@ -23,6 +23,19 @@ export default function App():JSX.Element {
     }
   ])
 
+  function handleClick(name: string){
+    setButtonList(prev=>(
+      prev.map(item=>(
+        {...item, selected: item.name === name}
+      ))
+    ))
+  }
+
+  function getSelectedActivationMode(): string{
+    const selected: ButtonInterface|undefined = buttonList.find(item => item.selected)
+    return selected?.name ?? 'All'
+  }
+
   return (
     <main className="pt-12 space-y-6">
       <div className="flex justify-between items-center">
@@ -31,9 +44,11 @@ export default function App():JSX.Element {
 
           {buttonList.map(item=>(
             <button key={item.name} 
-              className="cursor-pointer bg-neutral-0 hover:bg-neutral-0/50 dark:bg-neutral-700 dark:hover:bg-neutral-600
+              className={`cursor-pointer bg-neutral-0 hover:bg-neutral-0/50 dark:bg-neutral-700 dark:hover:bg-neutral-600
               py-2 px-4 rounded-full border-2 border-neutral-100 dark:border-neutral-600 
-              focus-visible:outline-2 focus-visible:outline-red-700 dark:focus-visible:border-neutral-900 focus-visible:border-neutral-0">
+              focus-visible:outline-2 focus-visible:outline-red-700 dark:focus-visible:border-neutral-900 focus-visible:border-neutral-0
+              ${item.selected && '!bg-red-500 dark:!text-neutral-900 !text-neutral-0 !border-red-500 dark:focus-visible:!border-neutral-900 focus-visible:!border-neutral-0'}`}
+              onClick={()=>handleClick(item.name)}>
               {item.name}
             </button>
           ))}
@@ -41,7 +56,7 @@ export default function App():JSX.Element {
         </nav>
       </div>
 
-      <ExtensionList />
+      <ExtensionList getSelectedActivationMode={getSelectedActivationMode}/>
     </main>
   )
 }

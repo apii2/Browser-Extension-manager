@@ -2,7 +2,11 @@ import { useState, type JSX } from "react";
 import Data from '@/json/data.json';
 import { Switch } from "@/components/ui/switch"
 
-export default function ExtensionList():JSX.Element {
+type ExtensionListProps = {
+  getSelectedActivationMode: () => string;
+};
+
+export default function ExtensionList({getSelectedActivationMode}: ExtensionListProps) {
   interface DataInterface{
     logo: string,
     name: string,
@@ -11,6 +15,17 @@ export default function ExtensionList():JSX.Element {
   }
 
   const [typedData, setTypedData] = useState<DataInterface[]>(Data);
+
+  function getFilteredData(): DataInterface[]{
+    if(getSelectedActivationMode() === 'All'){
+      return typedData
+    }else if(getSelectedActivationMode() === 'Active'){
+      return typedData.filter(item => item.isActive)
+    }else if(getSelectedActivationMode() === 'Inactive'){
+      return typedData.filter(item => !item.isActive)
+    }
+    return [];
+  }
 
   function handleChange(name: string){
     setTypedData(prev=>(
@@ -21,9 +36,15 @@ export default function ExtensionList():JSX.Element {
     console.log(typedData);
   }
 
+  function deleteItem(name: string){
+    setTypedData(prev=>(
+      prev.filter(item=> name !== item.name)
+    ))
+  }
+
   return (
     <div className="grid grid-cols-3 gap-4">
-      {typedData.map((dat)=>(
+      {getFilteredData().map((dat)=>(
         <section key={dat.name}
           className="h-auto bg-white dark:bg-neutral-800 p-4 rounded-xl ring-2 ring-neutral-100 dark:ring-neutral-700" >
           <div className="flex items-start gap-4">
@@ -39,7 +60,8 @@ export default function ExtensionList():JSX.Element {
             <button className="border-2 border-neutral-100 hover:border-red-500 dark:border-neutral-700 dark:hover:border-red-500 
               focus-visible:outline-2 focus-visible:outline-red-700 dark:focus-visible:border-neutral-900 focus-visible:border-neutral-0
               hover:bg-red-500 text-neutral-900 dark:text-neutral-0 dark:hover:text-neutral-900 hover:text-neutral-0 
-              text-sm font-semibold rounded-full py-1 px-3 cursor-pointer">
+              text-sm font-semibold rounded-full py-1 px-3 cursor-pointer"
+              onClick={()=>deleteItem(dat.name)}>
               Remove
             </button>
 

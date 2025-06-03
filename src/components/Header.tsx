@@ -1,7 +1,14 @@
 import SunIcon from '@/assets/images/icon-sun.svg';
 import MoonIcon from '@/assets/images/icon-moon.svg';
+import { useAppearance, prefersDark } from "@/hooks/use-appearance"
 
 export default function Header() {
+  const {appearance, updateAppearance} = useAppearance();
+  const isDark = appearance === "dark" || (appearance === "system" && prefersDark());
+  const changeAppearance = () =>{
+    isDark? updateAppearance('light') : updateAppearance('dark');
+  }
+
   return (
     <header className='flex justify-between items-center bg-neutral-0 dark:bg-neutral-800 ring-2 ring-neutral-100 dark:ring-neutral-800 px-4 py-3 rounded-2xl'>
       <svg className='' xmlns="http://www.w3.org/2000/svg" width="179" height="41" fill="none" viewBox="0 0 179 41">
@@ -12,7 +19,8 @@ export default function Header() {
 
       <button className='cursor-pointer bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 
         focus-visible:outline-none ring-2 ring-neutral-100 dark:ring-neutral-700 focus-visible:!ring-red-700
-        p-3 rounded-xl'>
+        p-3 rounded-xl'
+        onClick={changeAppearance}>
         <img src={SunIcon} alt="Appearance icon" className='hidden dark:block w-5' />
         <img src={MoonIcon} alt="Appearance icon" className='dark:hidden w-5' />
       </button>
