@@ -1,21 +1,11 @@
-import type { JSX } from "react";
-import Data from '@/json/data.json';
+import Header from "./components/Header"
+import ExtensionsList from './components/ExtensionsList'
 
-interface DataInterface{
-  logo: string,
-  name: string,
-  description: string,
-  isActive?: boolean
-}
-
-const typedData: DataInterface[] = Data as DataInterface[];
-
-export default function App():JSX.Element {
+export default function App() {
   return (
     <>
-      {typedData.map((dat)=>(
-        <h1 key={dat.name}>{dat.name} {dat.description}</h1>
-      ))}
+      <Header />
+      <ExtensionsList />
     </>
   )
 }
