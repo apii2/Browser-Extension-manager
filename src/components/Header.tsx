@@ -10,7 +10,9 @@ export default function Header() {
         <defs><clipPath id="a"><path fill="#fff" d="M0 0h40v41H0z"/></clipPath></defs>
       </svg>
 
-      <button className='cursor-pointer bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 p-3 rounded-xl'>
+      <button className='cursor-pointer bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 
+        focus-visible:outline-none ring-2 ring-neutral-100 dark:ring-neutral-700 focus-visible:!ring-red-700
+        p-3 rounded-xl'>
         <img src={SunIcon} alt="Appearance icon" className='hidden dark:block w-5' />
         <img src={MoonIcon} alt="Appearance icon" className='dark:hidden w-5' />
       </button>

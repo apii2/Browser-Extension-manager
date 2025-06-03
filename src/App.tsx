@@ -1,11 +1,11 @@
 import Header from "./components/Header"
-import ExtensionsList from './components/ExtensionsList'
+import Main from './components/Main'
 
 export default function App() {
   return (
     <>
       <Header />
-      <ExtensionsList />
+      <Main />
     </>
   )
 }
