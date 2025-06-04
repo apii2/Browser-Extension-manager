@@ -132,6 +132,6 @@
     background: var(--background);
   }
   #root {
-    padding: 1.5rem 7.5rem;
+    @apply px-4 sm:px-8 py-6 lg:px-30;
   }
 }

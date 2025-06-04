@@ -37,15 +37,15 @@ export default function App():JSX.Element {
   }
 
   return (
-    <main className="pt-12 space-y-6">
-      <div className="flex justify-between items-center">
+    <main className="pt-10 sm:pt-12 space-y-6">
+      <div className="flex justify-between items-center flex-col sm:flex-row gap-4 sm:gap-0">
         <h1 className="text-[2rem] font-bold text-neutral-900 dark:text-white">Extensions List</h1>
-        <nav className="space-x-2.5">
+        <nav className="space-x-3.5 sm:space-x-2.5">
 
           {buttonList.map(item=>(
             <button key={item.name} 
               className={`cursor-pointer bg-neutral-0 hover:bg-neutral-0/50 dark:bg-neutral-700 dark:hover:bg-neutral-600
-              py-2 px-4 rounded-full border-2 border-neutral-100 dark:border-neutral-600 
+              py-2 px-4 rounded-full border-2 border-neutral-100 dark:border-neutral-600 font-semibold
               focus-visible:outline-2 focus-visible:outline-red-700 dark:focus-visible:border-neutral-900 focus-visible:border-neutral-0
               ${item.selected && '!bg-red-500 dark:!text-neutral-900 !text-neutral-0 !border-red-500 dark:focus-visible:!border-neutral-900 focus-visible:!border-neutral-0'}`}
               onClick={()=>handleClick(item.name)}>

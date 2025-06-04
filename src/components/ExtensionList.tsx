@@ -43,10 +43,10 @@ export default function ExtensionList({getSelectedActivationMode}: ExtensionList
   }
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid auto-rows-[1fr] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {getFilteredData().map((dat)=>(
         <section key={dat.name}
-          className="h-auto bg-white dark:bg-neutral-800 p-4 rounded-xl ring-2 ring-neutral-100 dark:ring-neutral-700" >
+          className="flex flex-col justify-between bg-white dark:bg-neutral-800 p-4 rounded-xl ring-2 ring-neutral-100 dark:ring-neutral-700" >
           <div className="flex items-start gap-4">
             <img src={dat.logo} alt={`${dat.name} logo`} />
 
