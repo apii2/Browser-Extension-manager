@@ -6,7 +6,7 @@ type ExtensionListProps = {
   getSelectedActivationMode: () => string;
 };
 
-export default function ExtensionList({getSelectedActivationMode}: ExtensionListProps) {
+export default function ExtensionList({getSelectedActivationMode}: ExtensionListProps):JSX.Element {
   interface DataInterface{
     logo: string,
     name: string,
