@@ -48,7 +48,7 @@ export default function ExtensionList({getSelectedActivationMode}: ExtensionList
         <section key={dat.name}
           className="flex flex-col justify-between bg-white dark:bg-neutral-800 p-4 rounded-xl ring-2 ring-neutral-100 dark:ring-neutral-700" >
           <div className="flex items-start gap-4">
-            <img src={dat.logo} alt={`${dat.name} logo`} />
+            <img src={`${import.meta.env.BASE_URL}${dat.logo}`} alt={`${dat.name} logo`} />
 
             <div>
               <h1 className="text-lg font-bold mb-1 text-neutral-900 dark:text-neutral-0">{dat.name}</h1>
